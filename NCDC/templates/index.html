@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NCDC Storm Events Database</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+    crossorigin=""/>
+
+    <!-- Icons -->
+    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+<!---->
+    <link rel="stylesheet" href="css/leaflet.extra-markers.min.css">
+
+
+
+    <!-- Our CSS -->
+
+<!--
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+ -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="jumbotron">NCDC Data</h1>
+        <div>
+
+    <!-- This div holds NCDC map-->
+    <div id="map"></div>
+    <!--<div id="XX"></div>
+    <select id="selDataset" onchange="getData(this.value)">
+        <option value="Heavy Rain">Heavy Rain</option>
+        <option value="Thunderstorm Wind">Thunderstorm Wind</option>    
+        <option value="Marine Thunderstorm Wind">Marine Thunderstorm Wind</option>    
+        <option value="Flash Flood">Flash Flood</option>
+        <option value="Flood">Flood</option>
+        <option value="Marine High Flood">Marine High Flood</option>    
+        <option value="Hail">Hail</option>    
+        <option value="Tornado">Tornado</option>
+        <option value="Lightning">Lightning</option>    
+        <option value="Waterspout">Waterspout</option>    
+        <option value="Funnel Cloud">Funnel Cloud</option> 
+        <option value="Debris Flow">Debris Flow</option>    
+        <option value="Marine Hail">Marine Hail</option>    
+        <option value="Dust Devil">Dust Devil</option>
+        <option value="Marine Stron Wind">Marine Strong Wind</option>
+        <option value="Marine Lightning">Marine Lightning</option>         
+    </select>-->
+
+    <!--MySql
+    <div id="sqltable">
+
+
+        <th bgcolor="blue">
+            <td colspan = "10">TEST HEADER</td>
+        </th>
+       
+        {% for row in results %}
+        {% print('<tr>') %}
+        
+                 <td>{{ row[8] }}</td> 
+                 <td>{{ row[10] }}</td>
+                 <td>{{ row[11] }}</td>
+                 <td>{{ row[12] }}</td>
+                 <td>{{ row[20] }}</td>
+                 <td>{{ row[22] }}</td>
+                 <td>{{ row[45] }}</td>
+                 <td>{{ row[46] }}</td>
+                 <td>{{ row[49] }}</td>
+                
+              
+        {% endfor %}
+    </tr>
+    </div>-->
+
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <!-- D3 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.5.0/d3.min.js"></script>
+
+    <!-- MomentJS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+
+    <!-- Leaflet JavaScript -->
+
+<!--
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+    integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+    crossorigin=""></script>
+-->
+
+    <!-- Icons -->
+<!--
+    <script src="js/leaflet.extra-markers.min.js"></script>
+
+-->
+
+
+    <!-- polyfill.io is library for using newer JavaScript features in older browers (such as Object.assign) -->
+
+<!--
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+
+-->
+    <!-- API Key -->
+    <script type="text/javascript" src="static/config.js"></script>
+
+    <!-- Our JavaScript -->
+    <script type="text/javascript" src="static/app.js"></script>
+    <script type="text/javascript" src="static/logic.js"></script>
+
+</body>
+</html>
