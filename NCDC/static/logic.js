@@ -50,27 +50,111 @@ var rawdata = 'dis.json';
 
 var hailMarkers = [];
 
+
+var hail = new L.LayerGroup();
+var tornado = new L.LayerGroup();
+var dustdevil = new L.LayerGroup();
+var flood = new L.LayerGroup();
+var flashflood = new L.LayerGroup();
+
 // // //THIS WORKS
 d3.json(rawdata, function(data){
   var markers = L.markerClusterGroup({
       animateAddingMarkers: true
   });
+  
   //loop throgh only 100 features for convienience
   for( var i= 0 ; i < 1000; i++){
        var location = data.features[i];
-      console.log(location);
+      //console.log(location);
 
-      if (location) {
-        
+      if (location.properties.EVENT_TYPE == "Hail") {
           markers.addLayer(L.marker([location.geometry.coordinates[1],location.geometry.coordinates[0]])
-          .bindPopup("<h6>" + location.properties.EVENT_TYPE + "</h6> <hr> <p>" + location.properties.EPISODE_NARRATIVE +" </p> <hr> <p>" + location.properties.EVENT_NARRATIVE + "</p>")).addTo(myMap);
+          .bindPopup("<h6>" + location.properties.EVENT_TYPE + "</h6> <hr> <p>" + location.properties.EPISODE_NARRATIVE +" </p> <hr> <p>" + location.properties.EVENT_NARRATIVE + "</p>")).addTo(hail);
       }
   } 
 });
 
- L.control.layers(baseMaps, {
-   collapsed: true
- }).addTo(myMap);
+
+d3.json(rawdata, function(data){
+  var tmarkers = L.markerClusterGroup({
+      animateAddingMarkers: true
+  });
+  
+  //loop throgh only 100 features for convienience
+  for( var i= 0 ; i < 1000; i++){
+       var location = data.features[i];
+      //console.log(location);
+
+      if (location.properties.EVENT_TYPE == "Tornado") {
+          tmarkers.addLayer(L.marker([location.geometry.coordinates[1],location.geometry.coordinates[0]])
+          .bindPopup("<h6>" + location.properties.EVENT_TYPE + "</h6> <hr> <p>" + location.properties.EPISODE_NARRATIVE +" </p> <hr> <p>" + location.properties.EVENT_NARRATIVE + "</p>")).addTo(tornado);
+      }
+  } 
+});
+
+d3.json(rawdata, function(data){
+  var markers = L.markerClusterGroup({
+      animateAddingMarkers: true
+  });
+  
+  //loop throgh only 100 features for convienience
+  for( var i= 0 ; i < 1000; i++){
+       var location = data.features[i];
+      //console.log(location);
+
+      if (location.properties.EVENT_TYPE == "Flood") {
+          markers.addLayer(L.marker([location.geometry.coordinates[1],location.geometry.coordinates[0]])
+          .bindPopup("<h6>" + location.properties.EVENT_TYPE + "</h6> <hr> <p>" + location.properties.EPISODE_NARRATIVE +" </p> <hr> <p>" + location.properties.EVENT_NARRATIVE + "</p>")).addTo(flood);
+      }
+  } 
+});
+
+d3.json(rawdata, function(data){
+  var markers = L.markerClusterGroup({
+      animateAddingMarkers: true
+  });
+  
+  //loop throgh only 100 features for convienience
+  for( var i= 0 ; i < 5000; i++){
+       var location = data.features[i];
+      //console.log(location);
+
+      if (location.properties.EVENT_TYPE == "Flash Flood") {
+          markers.addLayer(L.marker([location.geometry.coordinates[1],location.geometry.coordinates[0]])
+          .bindPopup("<h6>" + location.properties.EVENT_TYPE + "</h6> <hr> <p>" + location.properties.EPISODE_NARRATIVE +" </p> <hr> <p>" + location.properties.EVENT_NARRATIVE + "</p>")).addTo(flashflood);
+      }
+  } 
+});
+
+d3.json(rawdata, function(data){
+  var markers = L.markerClusterGroup({
+      animateAddingMarkers: true
+  });
+  
+  //loop throgh only 100 features for convienience
+  for( var i= 0 ; i < 8000; i++){
+       var location = data.features[i];
+      //console.log(location);
+
+      if (location.properties.EVENT_TYPE == "Dust Devil") {
+          markers.addLayer(L.marker([location.geometry.coordinates[1],location.geometry.coordinates[0]])
+          .bindPopup("<h6>" + location.properties.EVENT_TYPE + "</h6> <hr> <p>" + location.properties.EPISODE_NARRATIVE +" </p> <hr> <p>" + location.properties.EVENT_NARRATIVE + "</p>")).addTo(dustdevil);
+      }
+  } 
+});
+
+hail.addTo(myMap);
+
+var overlayMaps = {
+  Hail : hail,
+  Tornado : tornado,
+  Flood: flood,
+  "Flash Flood": flashflood,
+  "Dust Devil": dustdevil
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(myMap);
 
 
 //console.log(overlayMaps);
